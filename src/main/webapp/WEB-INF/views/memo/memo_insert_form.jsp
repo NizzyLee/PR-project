@@ -55,7 +55,7 @@
 			
 			
 			<div class="mb-3">
-			<label for="file">사진부</label>
+			<label for="file">사진첨부</label>
 				 <input id="file" type="file" class="form-control"
 					name="photo" id="tag" >
 			</div>
