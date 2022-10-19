@@ -1,0 +1,24 @@
+@charset "UTF-8";
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.home{
+  
+color:#a071d0;
+	text-decoration: none;
+}
+
+.tip {
+	
+  font-size: 40px;
+  margin: 40px auto 50px;
+  text-align: center;
+  font-weight:bold;
+  text-shadow: 4px 2px 2px gray;
+  
+}
+.sec{
+	margin-top:30px;
+}

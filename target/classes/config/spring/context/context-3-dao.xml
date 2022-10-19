@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+
+	<!-- 로그인 -->
+	<bean id="login_daoBean" class="dao.LoginDAO">
+		<property name="sqlSession" ref="sqlSessionBean"></property>
+	</bean>
+	
+	<!-- 카카오 로그인 -->
+	<bean class="dao.KakaoDAO" id="kakao_daoBean">
+		<property ref="sqlSessionBean" name="sqlSession" />
+	</bean>
+
+	<bean class="dao.CalendarDAO" id="calendar_daoBean">
+		<property ref="sqlSessionBean" name="sqlSession" />
+	</bean>
+	<bean id="cash_dao" class="dao.CashDAO">
+		<constructor-arg ref="sqlSessionBean" />
+	</bean>
+	<bean id="board_daoBean" class="dao.BoardDAO">
+		<property name="sqlSession" ref="sqlSessionBean" />
+	</bean>
+	<bean class="dao.MemoDAO" id="memo_daoBean">
+		<property ref="sqlSessionBean" name="sqlSession" />
+	</bean>
+
+</beans>
