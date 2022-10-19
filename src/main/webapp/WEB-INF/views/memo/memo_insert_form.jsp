@@ -61,7 +61,7 @@
 			</div>
 		<input type="button" class="btn btn-sm btn-primary" id="btnSave" value="글쓰기" onclick="send(this.form);"> 
 		<input
-			type="button" value="목록으" class="btn btn-sm btn-primary" id="btnList"
+			type="button" value="목록으로" class="btn btn-sm btn-primary" id="btnList"
 			onclick="location.href='memo_list.do?id=${user.id}'">
 	</div>
 
