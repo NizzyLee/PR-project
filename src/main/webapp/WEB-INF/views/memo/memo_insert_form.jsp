@@ -46,7 +46,7 @@
 								<!-- wrap='on' : textarea에서 작성된 글이 길어서 다음줄로 넘어갔을 때 
 								 엔터값으로 인지할 수 있도록 해주는 속성 -->
 				<textarea class="form-control" rows="5" name="content" id="content"
-					placeholder="내용을 입력해 주세요" wrap='on'></textarea>
+					placeholder="내용을 입력해 주세" wrap='on'></textarea>
 			</div>
 			<div class="mb-3">
 				<label for="pwd">비밀번호</label> <input type="password" class="form-control"
