@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -13,17 +14,21 @@ SqlSession sqlSession;
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
+	 //전체 게시물 수 조회
+	public int getRowTotal() {
+		int count = sqlSession.selectOne("o.memo_count");
+		return count;
+	}
 	//방명록 전체조회
-	public List<MemoVO> selectList(MemoVO vo){
-		 List<MemoVO> list = sqlSession.selectList("o.memo_list", vo);
+	public List<MemoVO> selectList(Map<String, Integer> map){
+		 List<MemoVO> list = sqlSession.selectList("o.memo_list", map);
 		 return list;
 		}
 	//방명록 전체조회
-	public List<MemoVO> selectListOne(int idx){
-		 List<MemoVO> list = sqlSession.selectList("o.memo_list", idx);
-		 return list;
-		}
+	/*
+	 * public List<MemoVO> selectListOne(int idx){ List<MemoVO> list =
+	 * sqlSession.selectList("o.memo_list", idx); return list; }
+	 */
 	//게시글 삭제
 	public int delete(int idx) {
 		int res= sqlSession.delete("o.memo_delete", idx);

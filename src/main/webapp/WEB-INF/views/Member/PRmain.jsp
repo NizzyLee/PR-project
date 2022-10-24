@@ -13,6 +13,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css">
 <link href="${pageContext.request.contextPath}/resources/css/PR_Main.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <script>
 function modify(f) {
 	
@@ -73,7 +76,7 @@ function modify(f) {
 								<!-- Feature #1 -->
 									<section>
 										<a href="#" onclick="modify('${vo.idx}')" class="bordered-feature-image"><img src="${pageContext.request.contextPath}/resources/upload/${vo.filename}" alt="" /></a>
-												<div>별점</div>
+												<div class="sta">별점</div>
 												<c:if test="${vo.star == '0'}">
 												
                   <div class="starr col-2">☆☆☆☆☆</div>
@@ -93,7 +96,7 @@ function modify(f) {
                <c:if test="${vo.star == '5'}">
                   <div class="starr col-2">★★★★★</div>
                </c:if>
-										<h2 align="center"> ${vo.title}</h2>
+										<h2 class="titlefont" align="center"> ${vo.title}</h2>
 	
 									</section>
 					
@@ -104,6 +107,9 @@ function modify(f) {
 					</div>
 				</section>
 				</form>
+				<div class=pagebotton align=center>
+						${ pageMenu } 				
+	      </div>
 </body>
 
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>

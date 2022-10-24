@@ -10,6 +10,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,9 @@ import dao.CalendarDAO;
 import dao.KakaoDAO;
 import dao.LoginDAO;
 import dao.MemoDAO;
+import util.Paging;
+import util.Util;
+import vo.BoardVO;
 import vo.CalendarVO;
 import vo.KakaoVO;
 import vo.MemberVO;
@@ -128,12 +132,41 @@ public class LoginController {
 
 	
 	  @RequestMapping(value = { "/", "/PRmain.do" }) // 메인 달력 public
-	  public String Main(Model model, MemoVO vo) {
+	  public String Main(Model model, String page) {
 		
-			List<MemoVO> list = memo_dao.selectList(vo);
-			// System.out.println("gfggg");
-			model.addAttribute("list", list); // 바인딩
-			  
+		  int nowPage = 1;
+			
+			if( page != null ) {
+				nowPage = Integer.parseInt(page);
+			}
+		  
+			int start = ( nowPage - 1 ) * Util.Board.BLOCKLIST + 1;
+			int end = start + Util.Board.BLOCKLIST - 1;
+			
+			//map에 시작번호와 끝번호를 저장
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			map.put("start", start);
+			map.put("end", end);	
+			
+			List<MemoVO> list = memo_dao.selectList(map);
+			model.addAttribute("list", list);
+			
+			//전체게시물 수 조회
+			int row_total = memo_dao.getRowTotal();
+			
+			//하단에 표기될 페이지 메뉴 생성
+			String pageMenu = Paging.getPaging(
+					"PRmain.do", nowPage, row_total, 
+					Util.Board.BLOCKLIST, 
+					Util.Board.BLOCKPAGE);
+			
+			model.addAttribute("pageMenu", pageMenu);
+			
+			
+			/*
+			 * List<MemoVO> list = memo_dao.selectList(vo); // System.out.println("gfggg");
+			 * model.addAttribute("list", list); // 바인딩
+			 */			  
 		  return "/WEB-INF/views/Member/PRmain.jsp";
 	  	}
 	 

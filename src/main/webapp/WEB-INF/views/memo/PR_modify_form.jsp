@@ -53,7 +53,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                         	
-                            <h1>${vo.title}</h1>    
+                            <h2 class="titlefont">${vo.title}</h2>    
                         </div>
                     </div>
                 </div>

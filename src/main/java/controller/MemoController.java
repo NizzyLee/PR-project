@@ -84,7 +84,7 @@ public class MemoController {
 		System.out.println("절대경로 " + savePath);
 
 		MultipartFile photo = vo.getPhoto();
-		MultipartFile photo2 = vo.getPhoto();
+		MultipartFile photo2 = vo.getPhoto2();
 		
 		String filename = "no_file";
 		String titleimg = "no_file";
@@ -93,7 +93,7 @@ public class MemoController {
 		if (!photo.isEmpty()) {
 			// 업로드될 파일의 파일명
 			filename = photo.getOriginalFilename();
-			titleimg = photo2.getOriginalFilename();
+			
 			
 			// 파일을 저장할 경로
 			File saveFile = new File(savePath, filename);
@@ -103,7 +103,7 @@ public class MemoController {
 			} else {
 				long time = System.currentTimeMillis();
 				filename = String.format("%d_%s", time, filename);
-				titleimg = String.format("%d_%s", time, titleimg);
+			
 				saveFile = new File(savePath, filename);
 			}
 			// 업로드된 파일은 임시저장소에서 일정시간이 지나면 사라지는데,
@@ -118,7 +118,35 @@ public class MemoController {
 				e.printStackTrace();
 			}
 		}
+		// 업로드 된 파일이 존재한다면
+				if (!photo2.isEmpty()) {
+					// 업로드될 파일의 파일명
+					
+					titleimg = photo2.getOriginalFilename();
+					
+					// 파일을 저장할 경로
+					File saveFile = new File(savePath, titleimg);
 
+					if (!saveFile.exists()) {
+						saveFile.mkdirs();
+					} else {
+						long time = System.currentTimeMillis();
+					
+						titleimg = String.format("%d_%s", time, titleimg);
+						saveFile = new File(savePath, titleimg);
+					}
+					// 업로드된 파일은 임시저장소에서 일정시간이 지나면 사라지는데,
+					// 현재 내가 지정한 upload 폴더까지 경로로 사라지지 않도록 파일을 복사하는 메서드
+					try {
+						photo2.transferTo(saveFile);
+					} catch (IllegalStateException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
 		vo.setFilename(filename);
 		vo.setTitleimg(titleimg);
 		

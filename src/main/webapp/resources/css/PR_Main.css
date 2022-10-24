@@ -1,4 +1,8 @@
 @charset "UTF-8";
+@font-face {
+  font-family: "seoul"; /* 사용하고 싶은 font-family명을 지정 */
+  src: url("../Font/seoul.ttf") format("opentype"); /* 폰트파일 불러오기 */
+}
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0;
@@ -24,4 +28,14 @@ color:#a071d0;
 }
 .starr {
 	color:orange;
+	display:inline;
+}
+.titlefont{
+	font-family: "seoul";
+	font-size:28px;
+	padding-top:10px;
+}
+.sta{
+	padding-left: 70px;
+	display:inline;
 }

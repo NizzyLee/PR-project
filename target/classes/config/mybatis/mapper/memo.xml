@@ -4,10 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="o">
 
+<!-- 전체게시물 수 -->
+	<select id ="memo_count" resultType="int">
+		select count(*) from PRmovie 
+	</select>
+
 	<!--  방명록 전체 조회 -->
-	<select id="memo_list" resultType="memo">
+	<select id="memo_list" resultType="memo" parameterType="java.util.Map">
 	<!-- select는 반드시 resultType이 있어야 함 -->
-		select * from PRmovie
+		select * from (select rank() over(order by idx) no, o.* from PRmovie o)
+		where no between #{start} and #{end}
 	</select>
 	
 	<!-- 게시글 삭제 -->
