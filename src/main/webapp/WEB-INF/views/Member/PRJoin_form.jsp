@@ -37,7 +37,7 @@
 			//data = [{'res':'no_id'}, {'id':'hong'}]
 			var data = xhr.responseText;
 			var json = eval(data);
-			alert(data);
+			
 			if (json[0].res == 'no_email') {
 				alert("아이디가 없습니다");
 			} else if (json[0].res == 'no_pwd') {

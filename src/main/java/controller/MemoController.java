@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,18 +32,17 @@ public class MemoController {
 	}
 
 	// 메모 컨트롤러
-	@RequestMapping("/memo_list.do")
-	public String list(Model model, String id) {
-		// 방명록 조회를 위한 dao의 메서드 호출
-
-		List<MemoVO> list = memo_dao.selectList(id);
-		// System.out.println("gfggg");
-		model.addAttribute("list", list); // 바인딩
-
-		System.out.println("fn:" + list.get(0).getFilename());
-
-		return "/WEB-INF/views/memo/memo_list.jsp"; // 포워딩
-	}
+	/*
+	 * @RequestMapping("/memo_list.do") public String list(Model model, String id) {
+	 * // 방명록 조회를 위한 dao의 메서드 호출
+	 * 
+	 * //List<MemoVO> list = memo_dao.selectList(id); //
+	 * System.out.println("gfggg"); model.addAttribute("list", list); // 바인딩
+	 * 
+	 * System.out.println("fn:" + list.get(0).getFilename());
+	 * 
+	 * return "/WEB-INF/views/memo/memo_list.jsp"; // 포워딩 }
+	 */
 
 	// 삭제메서드
 	@RequestMapping("/memo_delete.do")
@@ -70,13 +70,13 @@ public class MemoController {
 	}
 
 	@RequestMapping("/memo_insert_form.do")
-	public String memo_insert_form(MemoVO vo, String id) {
-		vo.setId(id);
-		return "/WEB-INF/views/memo/memo_insert_form.jsp?id=" + vo.getId();
+	public String memo_insert_form(MemoVO vo) {
+		
+		return "/WEB-INF/views/memo/PRMovie_insert_form.jsp";
 	}
 
 	@RequestMapping("/memo_insert.do")
-	public String insert(MemoVO vo, String id) {
+	public String insert(MemoVO vo) {
 
 		// 사진을 업로드할 절대경로를 지정
 		String webPath = "/resources/upload/";
@@ -84,14 +84,17 @@ public class MemoController {
 		System.out.println("절대경로 " + savePath);
 
 		MultipartFile photo = vo.getPhoto();
-
+		MultipartFile photo2 = vo.getPhoto();
+		
 		String filename = "no_file";
-
+		String titleimg = "no_file";
+		
 		// 업로드 된 파일이 존재한다면
 		if (!photo.isEmpty()) {
 			// 업로드될 파일의 파일명
 			filename = photo.getOriginalFilename();
-
+			titleimg = photo2.getOriginalFilename();
+			
 			// 파일을 저장할 경로
 			File saveFile = new File(savePath, filename);
 
@@ -100,6 +103,7 @@ public class MemoController {
 			} else {
 				long time = System.currentTimeMillis();
 				filename = String.format("%d_%s", time, filename);
+				titleimg = String.format("%d_%s", time, titleimg);
 				saveFile = new File(savePath, filename);
 			}
 			// 업로드된 파일은 임시저장소에서 일정시간이 지나면 사라지는데,
@@ -114,36 +118,35 @@ public class MemoController {
 				e.printStackTrace();
 			}
 		}
-		vo.setId(id);
-		vo.setFilename(filename);
 
+		vo.setFilename(filename);
+		vo.setTitleimg(titleimg);
+		
 		int res = memo_dao.insert(vo);
 
 		// sendRedirect("list.do");
-		return "redirect:memo_list.do?id=" + vo.getId(); // list.do 매핑을 호출하는 방법
+		return "redirect:PRmain.do"; // list.do 매핑을 호출하는 방법
 	}
 
 	// 글 수정 폼으로 이동
-	@RequestMapping("/memo_modify_form.do")
-	public String modify_form(Model model, int idx, String id) {
+	
+	  @RequestMapping("/PR_modify_form.do") public String modify_form(Model
+	  model, int idx) {
 
-		MemoVO vo = memo_dao.selectOne(idx);
-		vo.setId(id);
-
-		if (vo != null) {
-			model.addAttribute("vo", vo);
-		}
-
-		return "/WEB-INF/views/memo/memo_modify_form.jsp?id=" + vo.getId();
-	}
+	  MemoVO vo = memo_dao.selectOne(idx); 
+	  
+	  if (vo != null) { model.addAttribute("vo", vo); }
+	  
+	  return "/WEB-INF/views/memo/PR_modify_form.jsp";
+	  }
+	
 
 	// 게시글 수정
-	@RequestMapping("/memo_modify.do")
-	public String modify(MemoVO vo, String id) {
-		vo.setId(id);
-		int res = memo_dao.update(vo);
-		return "redirect:memo_list.do?id=" + vo.getId();
-	}
+	/*
+	 * @RequestMapping("/memo_modify.do") public String modify(MemoVO vo, String id)
+	 * { vo.setId(id); int res = memo_dao.update(vo); return
+	 * "redirect:memo_list.do?id=" + vo.getId(); }
+	 */
 
 	// 메모 컨트롤러
 }

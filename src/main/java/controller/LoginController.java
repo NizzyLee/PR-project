@@ -30,9 +30,11 @@ import com.google.gson.JsonParser;
 import dao.CalendarDAO;
 import dao.KakaoDAO;
 import dao.LoginDAO;
+import dao.MemoDAO;
 import vo.CalendarVO;
 import vo.KakaoVO;
 import vo.MemberVO;
+import vo.MemoVO;
 
 @Controller
 public class LoginController {
@@ -41,6 +43,11 @@ public class LoginController {
 
 	public void setLogin_dao(LoginDAO login_dao) {
 		this.login_dao = login_dao;
+	}
+	MemoDAO memo_dao;
+
+	public void setMemo_dao(MemoDAO memo_dao) {
+		this.memo_dao = memo_dao;
 	}
 
 	@RequestMapping("/PRLogin_form.do") // 시작 페이지 로그인 폼
@@ -121,12 +128,12 @@ public class LoginController {
 
 	
 	  @RequestMapping(value = { "/", "/PRmain.do" }) // 메인 달력 public
-	  public String Main(Model model) {
-	  
-			/*
-			 * List<CalendarVO> list = calendar_dao.getCalendar(mid);
-			 * model.addAttribute("list2", list); 
-			 */
+	  public String Main(Model model, MemoVO vo) {
+		
+			List<MemoVO> list = memo_dao.selectList(vo);
+			// System.out.println("gfggg");
+			model.addAttribute("list", list); // 바인딩
+			  
 		  return "/WEB-INF/views/Member/PRmain.jsp";
 	  	}
 	 

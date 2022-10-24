@@ -15,8 +15,13 @@ SqlSession sqlSession;
 	}
 	
 	//방명록 전체조회
-	public List<MemoVO> selectList(String id){
-		 List<MemoVO> list = sqlSession.selectList("o.memo_list", id);
+	public List<MemoVO> selectList(MemoVO vo){
+		 List<MemoVO> list = sqlSession.selectList("o.memo_list", vo);
+		 return list;
+		}
+	//방명록 전체조회
+	public List<MemoVO> selectListOne(int idx){
+		 List<MemoVO> list = sqlSession.selectList("o.memo_list", idx);
 		 return list;
 		}
 	//게시글 삭제
@@ -28,8 +33,7 @@ SqlSession sqlSession;
 	
 	//새글 쓰기 VisitVO를 파라미터로 받을것임
 	public int insert(MemoVO vo) {
-		
-		System.out.println("id:"+vo.getId());
+				
 		int res =sqlSession.insert("o.memo_insert", vo); //파라미터는 1개씩만 보낼 수 있음. vo하나로 다보냄
 		return res;
 

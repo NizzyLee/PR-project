@@ -24,6 +24,7 @@
 	<!-- 컨트롤러 수동생성 -->
 	<beans:bean id="con" class="controller.LoginController">
 		<beans:property name="login_dao" ref="login_daoBean" />
+		<beans:property ref="memo_daoBean" name="memo_dao" />
 	</beans:bean>
 	
 	<beans:bean id="kakao_controller"

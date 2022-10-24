@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!--  방명록 전체 조회 -->
 	<select id="memo_list" resultType="memo">
 	<!-- select는 반드시 resultType이 있어야 함 -->
-		select * from memo where id=#{id} order by idx DESC 
+		select * from PRmovie
 	</select>
 	
 	<!-- 게시글 삭제 -->
@@ -17,12 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 게시글 추가 -->
 	<insert id="memo_insert" parameterType="memo">
-		insert into memo values( seq_memo_idx.nextVal, #{id},#{pwd}, #{name}, #{title}, #{content},  sysdate, #{filename} )
+		insert into PRmovie values( seq_PRmovie_idx.nextVal, #{title},1, #{filename}, #{titleimg} )
 	</insert>
 	
 	<!-- 수정을 위한 게시글 한 건 조회 -->
 	<select id="memo_one" resultType="memo" parameterType="int">
-		select * from memo where idx=#{idx}
+		select * from PRmovie where idx=#{idx}
 	</select>
 
 	<!-- 게시글 수정 -->
