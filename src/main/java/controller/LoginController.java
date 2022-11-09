@@ -131,7 +131,7 @@ public class LoginController {
 	}
 
 	
-	  @RequestMapping(value = { "/", "/PRmain.do" }) // 메인 달력 public
+	  @RequestMapping(value = { "/", "/PRmain.do" }) 
 	  public String Main(Model model, String page) {
 		
 		  int nowPage = 1;

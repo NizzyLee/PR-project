@@ -18,6 +18,10 @@ public class LoginDAO {
 		MemberVO baseVO = sqlSession.selectOne("u.id_check", vo);
 		return baseVO;
 	}
+	public MemberVO selectlist(MemberVO vo) {
+		MemberVO baseVO = sqlSession.selectOne("u.member_list", vo);
+		return baseVO;
+	}
 	//회원가입
 	public int insert(MemberVO vo) {
 		int res = sqlSession.insert("u.member_insert", vo);

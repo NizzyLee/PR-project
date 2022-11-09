@@ -28,5 +28,8 @@
 	<bean class="dao.MemoDAO" id="memo_daoBean">
 		<property ref="sqlSessionBean" name="sqlSession" />
 	</bean>
+	<bean class="dao.ReviewDAO" id="review_daoBean">
+		<property ref="sqlSessionBean" name="sqlSession" />
+	</bean>
 
 </beans>

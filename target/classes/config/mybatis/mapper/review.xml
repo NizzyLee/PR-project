@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="r">
+
+
+	<select id="review_list" resultType="review">
+	select * from PRreview where title = #{title} order by idx desc 		
+	</select>
+	
+	<!-- 평균 -->
+	<select id="review_star" resultType="double" parameterType="String">
+	select AVG(star) from PRreview where title = #{title} group by title		
+	</select>
+	
+	
+	<!-- 게시글 추가 -->
+	<insert id="review_insert" parameterType="review">
+		insert into PRreview values( seq_PRreview_idx.nextVal, #{name}, #{content},#{star},#{title} )
+	</insert>
+	
+</mapper>

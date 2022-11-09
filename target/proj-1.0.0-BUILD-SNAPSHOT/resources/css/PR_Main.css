@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "seoul"; /* 사용하고 싶은 font-family명을 지정 */
+  src: url("../Font/seoul.ttf") format("opentype"); /* 폰트파일 불러오기 */
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.home{
+  
+color:#a071d0;
+	text-decoration: none;
+}
+
+.tip {
+	
+  font-size: 40px;
+  margin: 40px auto 50px;
+  text-align: center;
+  font-weight:bold;
+  text-shadow: 4px 2px 2px gray;
+  
+}
+.sec{
+	margin-top:30px;
+}
+.starr {
+	color:orange;
+	display:inline;
+}
+.titlefont{
+	font-family: "seoul";
+	font-size:28px;
+	padding-top:10px;
+}
+.sta{
+	padding-left: 70px;
+	display:inline;
+}

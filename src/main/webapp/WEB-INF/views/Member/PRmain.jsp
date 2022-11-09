@@ -40,21 +40,23 @@ function modify(f) {
           <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
         
         </ul>
-  	<c:if test="${user.email != null}">
+  	
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
           <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
         </form>
            <div class="text-end">
-           
+            <c:if test="${user.email == 'rkdn36@naver.com'}"> 
 				          <button type="button" onclick="location.href='memo_insert_form.do'" class="btn btn-outline-light me-2">Movie upload</button>
+              </c:if> 
+                <c:if test="${user.email != null}">
           <button type="button" onclick="location.href='/'" class="btn btn-outline-light me-2">MyPage</button>
           <button type="button" onclick="location.href='logout.do'" class="btn btn-warning">Login-Out</button>
+         </c:if>
         </div>
-        </c:if>
-	<c:if test="${user.email == null}">
-  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-          <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-        </form>
+    
+	
+
+        <c:if test="${user.email == null}">
         <div class="text-end">
           <button type="button" onclick="location.href='PRLogin_form.do'" class="btn btn-outline-light me-2">Login</button>
           <button type="button" onclick="location.href='PRinsert_form.do'" class="btn btn-warning">Sign-up</button>     
@@ -71,7 +73,7 @@ function modify(f) {
 						<div class="row">
 						<c:forEach var="vo" items="${ list }">
 							<div class="col-3 col-6-medium col-12-small">
-	
+				<input type="hidden" name="title" value="${vo.title}">
 						
 								<!-- Feature #1 -->
 									<section>
@@ -96,7 +98,7 @@ function modify(f) {
                <c:if test="${vo.star == '5'}">
                   <div class="starr col-2">★★★★★</div>
                </c:if>
-										<h2 class="titlefont" align="center"> ${vo.title}</h2>
+										<h2 class="titlefont" align="center" name="title"> ${vo.title}</h2>
 	
 									</section>
 					

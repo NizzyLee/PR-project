@@ -7,13 +7,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="id_check" resultType="member" parameterType="member">
 		select * from PRmember where email = #{email}
 	</select>
+	<select id="member_list" resultType="member" parameterType="member">
+		select * from PRmember
+	</select>
 	<insert id="member_insert" parameterType="member">
 		insert into PRmember values(seq_member_idx.nextVal, #{email}, #{pwd}, #{name}, #{phone}, sysdate)
 	</insert>
 	<select id="email_overlap" resultType="int">
 		SELECT COUNT(*) FROM PRmember where email=#{email}
 	</select>
+	
+	
+	
 	<!-- 회원 등록 전화번호 중복 체크 -->
-	<select parameterType="String" resultType="vo.MemberVO"
-		id="member_telcheck">select * from member where phone=#{phone} </select>
+	<select parameterType="String" resultType="member"
+		id="member_telcheck">select * from PRmember where phone=#{phone} </select>
 </mapper>

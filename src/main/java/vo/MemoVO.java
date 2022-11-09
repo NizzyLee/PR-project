@@ -15,8 +15,8 @@ public class MemoVO {
 	public void setPhoto2(MultipartFile photo2) {
 		this.photo2 = photo2;
 	}
-	public void setStar(int star) {
-		this.star = star;
+	public void setStar(int avglist) {
+		this.star = avglist;
 	}
 
 	public String getTitleimg() {

@@ -12,6 +12,7 @@
 		<typeAlias type="vo.MemberVO" alias="member"/>
 		<typeAlias type="vo.CalendarVO" alias="calen"/>
 		<typeAlias type="vo.BoardVO" alias="board"/> 
+		<typeAlias type="vo.ReviewVO" alias="review"/> 
 		<typeAlias alias="memo" type="vo.MemoVO"/>
 		<typeAlias alias="kakao" type="vo.KakaoVO"/>
 	</typeAliases>
@@ -22,6 +23,7 @@
 		<mapper resource="config/mybatis/mapper/kakao.xml"/>
 		<mapper resource="config/mybatis/mapper/cash.xml" />
 		<mapper resource="config/mybatis/mapper/memo.xml"/>
+		<mapper resource="config/mybatis/mapper/review.xml"/>
 	</mappers>
 	
 </configuration>

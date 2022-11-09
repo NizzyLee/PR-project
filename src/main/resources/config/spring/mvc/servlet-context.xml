@@ -44,6 +44,7 @@
 
 	<beans:bean class="controller.MemoController" id="con2">
 		<beans:property ref="memo_daoBean" name="memo_dao" />
+		<beans:property ref="review_daoBean" name="review_dao" />		
 	</beans:bean>
 </beans:beans>
 

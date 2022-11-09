@@ -39,11 +39,11 @@
 			var json = eval(data);
 			
 			if (json[0].res == 'no_email') {
-				alert("아이디가 없습니다");
+				alert("이메일이 없습니다");
 			} else if (json[0].res == 'no_pwd') {
 				alert("비밀번호 불일치");
 			} else {
-				//alert('${user.id}');
+				alert('${user.name}');
 				location.href = "PRmain.do";
 
 			}

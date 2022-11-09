@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 게시글 추가 -->
 	<insert id="memo_insert" parameterType="memo">
-		insert into PRmovie values( seq_PRmovie_idx.nextVal, #{title},1, #{filename}, #{titleimg} )
+		insert into PRmovie values( seq_PRmovie_idx.nextVal, #{title},#{star}, #{filename}, #{titleimg} )
 	</insert>
 	
 	<!-- 수정을 위한 게시글 한 건 조회 -->
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 게시글 수정 -->
 	<update id="memo_update" parameterType="memo">
-		update memo set name=#{name}, content=#{content}, pwd=#{pwd}, regdate=sysdate
+		update PRmovie set title=#{title}, star=#{star}, filename=#{filename}, titleimg=#{titleimg}
 		where idx=#{idx}
 	</update>
 
